@@ -10,7 +10,7 @@ const App = () => {
       </header>
       <Board
         url="https://inspiration-board.herokuapp.com/"
-        board="boards" // for retrieve list of cards fro a single board
+        board="boards" // for retrieve list of cards for a single board (not for delete a card)
         card="cards"   // for delete a card
         boardName={`Ting-Yi`}
       />

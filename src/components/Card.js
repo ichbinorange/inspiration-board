@@ -23,7 +23,6 @@ const Card = (props) => {
 Card.propTypes = {
   text: PropTypes.string.isRequired,
   emoji: PropTypes.string,
-  Emoji: PropTypes.string,
   deleteCardCallback: PropTypes.func.isRequired,
 };
 

@@ -78,7 +78,7 @@ const Board = (props) => {
 Board.propTypes = {
   cards: PropTypes.arrayOf(PropTypes.shape(
     {
-      quote: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
       emoji: PropTypes.string,
       id: PropTypes.number.isRequired,
     },
