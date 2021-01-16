@@ -9,7 +9,7 @@ const Card = (props) => {
     <div className="card">
       <div className="card__content">
         <div className="card__content-text">{props.text}</div>
-        <div className="card__content-emoji">{emoji.getUnicode(props.emoji || props.Emoji || '')}</div>
+        <div className="card__content-emoji">{emoji.getUnicode(props.emoji || '')}</div>
         <button
           onClick={() => props.deleteCardCallback(props.id)}
           className="card__delete">
