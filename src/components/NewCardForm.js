@@ -51,10 +51,11 @@ const NewCardForm = (props) => {
         <select className="new-card-form__form-select"
                 name="emoji"
                 onChange={onInputChange} 
-                value={formFields.emoji} >
+                >
           {
             EMOJI_LIST.map((ej, i) => (
               <option key={i}
+                      value={ej.emoji} 
                       >{emoji.getUnicode(ej)}</option>
             ))
           }
