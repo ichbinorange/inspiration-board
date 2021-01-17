@@ -11,10 +11,14 @@ const Board = (props) => {
   const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
-    axios.get(`${props.url}/${props.board}/${props.boardName}/${props.card}`)
+    axios.get(`${props.url}${props.board}/${props.boardName}/${props.card}`)
       .then((response) => {
         const apiCardList = response.data;
-        setCardList(apiCardList);
+        if (apiCardList.length !== 0) {
+          setCardList([...apiCardList]);
+        } else {
+          setCardList(apiCardList)
+        }
       })
       .catch((error) => {
         // Still need to handle errors
@@ -23,7 +27,7 @@ const Board = (props) => {
   }, []);
   
   const addCard = (card) => {
-    axios.post(`${props.url}/${props.board}/${props.boardName}/${props.card}`, card)
+    axios.post(`${props.url}${props.board}/${props.boardName}/${props.card}`, card)
     .then((response) => {
       // What should we do when we know the post request worked?
       const updatedData = [...cardList, response.data];
@@ -42,7 +46,7 @@ const Board = (props) => {
     });
 
     if (newCardList.length < cardList.length) {
-      axios.delete(`${props.url}/${props.card}/${id}`)
+      axios.delete(`${props.url}${props.card}/${id}`)
         .then((response) => {
           setErrorMessage(`Card ${ id } deleted`);
         })
@@ -52,7 +56,7 @@ const Board = (props) => {
       setCardList(newCardList);
     }
   }
-
+  
   const cardComponents = cardList.map((card, i) => {
     return (
       <div key={i}>
@@ -66,7 +70,7 @@ const Board = (props) => {
     )
   })
   return (
-    <div>
+    <div data-testid={props.boardName}>
       <NewCardForm addCardCallback={addCard} /> 
       {errorMessage ? <div><h2 className="validation-errors-display">{errorMessage}</h2></div> : <div><h2 className="validation-errors-display__list">''</h2></div>}
       <div className="board">
@@ -77,13 +81,13 @@ const Board = (props) => {
 };
 Board.propTypes = {
   cards: PropTypes.arrayOf(PropTypes.shape(
-    {
-      text: PropTypes.string.isRequired,
-      emoji: PropTypes.string,
-      id: PropTypes.number.isRequired,
+    { card: {
+        text: PropTypes.string.isRequired,
+        emoji: PropTypes.string,
+        id: PropTypes.number.isRequired,
+      }
     },
   )),
-  deleteCardCallback: PropTypes.func.isRequired,
 };
 
 export default Board;
