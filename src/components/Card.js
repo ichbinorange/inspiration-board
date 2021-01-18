@@ -12,7 +12,8 @@ const Card = (props) => {
         <div className="card__content-emoji">{emoji.getUnicode(props.emoji || '')}</div>
         <button
           onClick={() => props.deleteCardCallback(props.id)}
-          className="card__delete">
+          className="card__delete"
+          data-testid={props.id}>
           Delete
         </button>
       </div>
