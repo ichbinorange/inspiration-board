@@ -57,22 +57,25 @@ const Board = (props) => {
     }
   }
   
-  const cardComponents = cardList.map((card, i) => {
+  const cardComponents = cardList.map((card) => {
     return (
-      <div key={i}>
-        <Card
-          id={card.card.id}
-          text={card.card.text}
-          emoji={card.card.emoji}
-          deleteCardCallback={deleteCard}
-        />
-      </div>
+      <Card
+        key={card.card.id}
+        id={card.card.id}
+        text={card.card.text}
+        emoji={card.card.emoji}
+        deleteCardCallback={deleteCard}
+      />
     )
   })
   return (
     <div data-testid={props.boardName}>
       <NewCardForm addCardCallback={addCard} /> 
-      {errorMessage ? <div><h2 className="validation-errors-display">{errorMessage}</h2></div> : <div><h2 className="validation-errors-display__list">''</h2></div>}
+      <div className="validation-errors-display">
+        <h2 className="validation-errors-display__list">
+          {errorMessage ? `${errorMessage}` : ''}
+        </h2>
+      </div>
       <div className="board">
         {cardComponents}
       </div>
