@@ -24,7 +24,7 @@ const Board = (props) => {
         // Still need to handle errors
         setErrorMessage(error.message);
       });
-  }, []);
+  }, [props.boardName]);
   
   const addCard = (card) => {
     axios.post(`${props.url}${props.board}/${props.boardName}/${props.card}`, card)
