@@ -33,3 +33,8 @@ h1, h2 {
 
   transform: rotate(-3deg) skew(-3deg);
 }
+
+
+.search__header {
+  text-align: center;
+}
